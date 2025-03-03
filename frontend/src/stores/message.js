@@ -2,9 +2,9 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
 
-const apiUrl = "http://localhost:4000/message";
+const apiUrl = "http://gastrozoom.studenti.sumit.ba/message";
 
-export const useMessageStore = defineStore('message', {
+export const useMessageStore = defineStore("message", {
   state: () => ({
     messages: [],
     message: null,
@@ -57,7 +57,7 @@ export const useMessageStore = defineStore('message', {
           },
         });
         if (res.status === 200) {
-          this.messages = this.messages.filter(message => message.id !== id);
+          this.messages = this.messages.filter((message) => message.id !== id);
         }
       } catch (error) {
         console.log("Failed to delete message: ", error);

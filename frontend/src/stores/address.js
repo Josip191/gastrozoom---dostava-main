@@ -2,9 +2,9 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
 
-const apiUrl = 'http://localhost:4000/address';
+const apiUrl = "http://gastrozoom.studenti.sumit.ba/address";
 
-export const useAddressStore = defineStore('address', {
+export const useAddressStore = defineStore("address", {
   state: () => ({
     addresses: [],
     address: null,
@@ -93,7 +93,9 @@ export const useAddressStore = defineStore('address', {
           },
         });
         if (res.status === 200) {
-          const index = this.addresses.findIndex(address => address.id === id);
+          const index = this.addresses.findIndex(
+            (address) => address.id === id,
+          );
           if (index !== -1) {
             this.addresses[index] = res.data;
           }
@@ -114,7 +116,9 @@ export const useAddressStore = defineStore('address', {
           },
         });
         if (res.status === 200) {
-          this.addresses = this.addresses.filter(address => address.id !== id);
+          this.addresses = this.addresses.filter(
+            (address) => address.id !== id,
+          );
         }
       } catch (error) {
         console.log("Failed to delete address: ", error);

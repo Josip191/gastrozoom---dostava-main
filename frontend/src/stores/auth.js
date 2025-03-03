@@ -1,12 +1,12 @@
-import {defineStore} from "pinia";
-import {useLocalStorage} from "@vueuse/core";
+import { defineStore } from "pinia";
+import { useLocalStorage } from "@vueuse/core";
 import axios from "axios";
 
-const apiUrl = "http://localhost:4000/auth";
+const apiUrl = "http://gastrozoom.studenti.sumit.ba/auth";
 
-export const useAuthStore = defineStore('auth', {
+export const useAuthStore = defineStore("auth", {
   state: () => ({
-    auth: useLocalStorage('auth', {
+    auth: useLocalStorage("auth", {
       token: "",
       isAutenticated: false,
       role: "",
@@ -22,7 +22,7 @@ export const useAuthStore = defineStore('auth', {
           this.auth = {
             token: res.data.token,
             isAutenticated: true,
-          }
+          };
           await this.getRole(res.data.token);
         }
       } catch (error) {
@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', {
           this.auth = {
             token: res.data.token,
             isAuthenticated: true,
-          }
+          };
           await this.getRole(res.data.token);
         }
       } catch (error) {
@@ -57,7 +57,7 @@ export const useAuthStore = defineStore('auth', {
         if (res.status === 200) {
           this.auth.role = res.data.user.role;
         }
-      } catch(error) {
+      } catch (error) {
         console.log("Failed to get role: ", error);
         throw error;
       }
@@ -96,4 +96,4 @@ export const useAuthStore = defineStore('auth', {
       }
     },
   },
-})
+});

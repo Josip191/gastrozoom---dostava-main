@@ -2,9 +2,9 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
 
-const apiUrl = 'http://localhost:4000/order';
+const apiUrl = "http://gastrozoom.studenti.sumit.ba/order";
 
-export const useOrderStore = defineStore('order', {
+export const useOrderStore = defineStore("order", {
   state: () => ({
     orders: [],
     order: null,
@@ -87,13 +87,17 @@ export const useOrderStore = defineStore('order', {
       try {
         const authStore = useAuthStore();
         const token = authStore.auth.token;
-        const res = await axios.put(`${apiUrl}/${id}`, { status }, {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const res = await axios.put(
+          `${apiUrl}/${id}`,
+          { status },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
         if (res.status === 200) {
-          const index = this.orders.findIndex(order => order.id === id);
+          const index = this.orders.findIndex((order) => order.id === id);
           if (index !== -1) {
             this.orders[index] = res.data;
           }

@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import {useAuthStore} from "@/stores/auth";
+import { useAuthStore } from "@/stores/auth";
 
-const apiUrl = "http://localhost:4000/food";
+const apiUrl = "http://gastrozoom.studenti.sumit.ba/food";
 
-export const useFoodStore = defineStore('food', {
+export const useFoodStore = defineStore("food", {
   state: () => ({
     foods: [],
     food: null,
@@ -78,7 +78,7 @@ export const useFoodStore = defineStore('food', {
           },
         });
         if (res.status === 200) {
-          this.foods = this.foods.filter(food => food.id !== id);
+          this.foods = this.foods.filter((food) => food.id !== id);
         }
       } catch (error) {
         console.log("Failed to delete food: ", error);
